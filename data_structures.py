@@ -89,8 +89,13 @@ def invert_employee_manager_map(mapping: dict) -> dict:
     Return:
     {"Manager1": ["Alice", "Bob"], "Manager2": ["Clara"]}
     """
-    
-
+    employee = {}
+    for key, value in mapping.items():
+        if value not in employee:
+            employee[value] = []
+        employee[value].append(key)
+    return employee
+print(invert_employee_manager_map({"Alice": "Manager1", "Bob": "Manager1", "Clara": "Manager2"}))
 
 # ============================
 # Practice Question 7
@@ -100,4 +105,20 @@ def fibonacci_sequence(n: int) -> list:
     Return the first n Fibonacci numbers.
     Raise ValueError for negative numbers.
     """
+    
+    while n >=0:
+        if n == 0:
+            return []
+        elif n == 1:
+            return [1]
+        else:
+            new_list = []
+            a,b = 0,1
+            new_list.append(a)
+            new_list.append(b)
+            for i in range(n):
+                a,b = b,a+b
+                new_list.append(b)
+    else:
+        raise ValueError
     
