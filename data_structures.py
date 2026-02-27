@@ -277,3 +277,127 @@ def countdown(n):
     return [n] +count
 print(countdown(5))
 
+import re
+
+def check_uuid(uuids:list):
+    pattern= r'[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}'
+    new = {}
+    validsearched = []
+    invalidsearched= []
+    for uuid in uuids:
+        
+        if re.findall(pattern,uuid):
+            # validsearched.append(uuid)
+            new.setdefault('Valid',[]).append(uuid)
+            new.setdefault('Invalid',[])
+        else:
+            # invalidsearched.append(uuid)
+            new.setdefault('Valid',[])
+            new.setdefault('Invalid',[]).append(uuid)
+            
+    return new
+print(check_uuid(['738hud-fhkdg','550a8400-e29b-41d4-a716-434565767771']))
+
+def countdown(n):
+    if n <= 0:
+        return []
+    else:
+
+        return [n] + countdown(n-1)
+print(countdown(5))
+
+def countup(n):
+    if n < 1:
+        return 1
+    else:
+        print
+        countup(n-1)
+        print(n)
+print(countup(5))
+
+def fact(n):
+    if n == 0:
+        return []
+    elif n == 1:
+        return [1]
+    else:
+        
+        rec = fact(n-1)
+        
+        rec.append(n * rec[-1])
+        
+        
+    return rec
+print(fact(5))
+
+def factorial_sequence(n):
+    # 1. Base Case: Stop at 1 and return it in a list
+    if n <= 1:
+        return [1]
+    
+    # 2. Recursive Step: Get the list from the previous step (n-1)
+    history = factorial_sequence(n - 1)
+    
+    # 3. Calculate current factorial by multiplying n with the last answer
+    current_answer = n * history[-1]
+    
+    # 4. Join the existing list with the new answer
+    return history + [current_answer]
+
+# Example Usage:
+print(factorial_sequence(5))
+# Output: [1, 2, 6, 24, 120]
+
+
+def fib_seq(n):
+    if n == 0:
+        return []
+    if n == 1:
+        return [0]
+    if n == 2:
+        return [0,1]
+    
+    fib = fib_seq(n-1)
+    fib.append(fib[-2]+fib[-1])
+    return fib
+print(fib_seq(8))
+
+def sum_nat(n):
+    if n <=1:
+        return [1]
+    else:
+        rec = sum_nat(n-1)
+        output = n +rec[-1]
+        return rec+[output]
+print(sum_nat(5))
+
+def string(s):
+    if len(s) == 0:
+        return s
+    else:
+        return string(s[1:]) + s[0]
+    
+print(string('Hi'))
+
+def rev(s,start=0,end=None):
+    if end == None:
+        end = len(s)-1
+    if start >=end:
+        if isinstance(s,str):
+            return s
+        return s
+    print(end)
+    return s[-1] + rev(s[1:-1]) + s[0]
+print(rev('hello'))
+
+
+def rev_ls(ls : list,start=0,end=None):
+    if end == None:
+        end = len(ls)-1
+    if start >= end:
+        if isinstance(ls,list):
+            ls[start],ls[end] = ls[end],ls[start]
+            return rev_ls(ls,start+1,end-1)
+    
+    return 
+print(rev_ls(['h','i']))
